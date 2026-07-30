@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NEUROSIM Mobile — Synthetic EEG Cognitive Platform</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0B0E14">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: #0B0E14; color: #F8FAFC; padding: 16px; display: flex; flex-direction: column; height: 100vh; }
+        header { text-align: center; margin-bottom: 16px; }
+        header h1 { color: #00F0FF; font-size: 22px; font-weight: 800; letter-spacing: 1px; }
+        header p { color: #94A3B8; font-size: 11px; }
+        .disclaimer { background: rgba(239, 68, 68, 0.15); border: 1px solid #EF4444; border-radius: 8px; padding: 8px; font-size: 10px; color: #FCA5A5; text-align: center; margin-bottom: 16px; }
+        .card { background-color: #121722; border: 1px solid #1E293B; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+        canvas { width: 100%; height: 160px; background: #0B0E14; border-radius: 8px; margin-top: 8px; }
+        .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+        .metric-box { background: #182030; padding: 10px; border-radius: 8px; text-align: center; }
+        .metric-title { font-size: 10px; color: #94A3B8; text-transform: uppercase; font-weight: bold; }
+        .metric-val { font-size: 18px; font-weight: 900; color: #00F0FF; margin-top: 2px; }
+        .state-badge { font-size: 22px; font-weight: 900; text-align: center; padding: 12px; background: rgba(16, 185, 129, 0.15); color: #10B981; border-radius: 8px; border: 1px solid #10B981; margin-top: 8px; }
+        .slider-group { margin-top: 10px; }
+        .slider-group label { font-size: 11px; font-weight: bold; display: flex; justify-content: space-between; margin-bottom: 4px; }
+        input[type=range] { width: 100%; accent-color: #00F0FF; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚡ NEUROSIM MOBILE</h1>
+        <p>Synthetic EEG Cognitive Analysis Platform</p>
+    </header>
+
+    <div class="disclaimer">
+        ⚠️ <b>PROTOTYPE NOTICE:</b> Synthetic EEG Signal Simulator — Not a Clinical Medical Diagnosis System.
+    </div>
+
+    <div class="card">
+        <div style="font-size: 12px; font-weight: bold; color: #00F0FF;">LIVE WAVEFORM (250 Hz)</div>
+        <canvas id="eegCanvas"></canvas>
+    </div>
+
+    <div class="card">
+        <div style="font-size: 11px; color: #94A3B8; font-weight: bold; text-align: center;">SYNTHETIC COGNITIVE STATE</div>
+        <div class="state-badge" id="stateBadge">RELAXED / LOW</div>
+        
+        <div class="metrics-grid">
+            <div class="metric-box">
+                <div class="metric-title">Dominant Band</div>
+                <div class="metric-val" id="domBand">ALPHA</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-title">Confidence</div>
+                <div class="metric-val" id="confidence">88.5%</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div style="font-size: 12px; font-weight: bold; margin-bottom: 8px;">POTENTIOMETER SIMULATION</div>
+        <div class="slider-group">
+            <label style="color: #00F0FF;"><span>P1 (Delta 2Hz)</span> <span id="valD">20%</span></label>
+            <input type="range" id="sliderD" min="0" max="100" value="20">
+        </div>
+        <div class="slider-group">
+            <label style="color: #3B82F6;"><span>P2 (Theta 6Hz)</span> <span id="valT">20%</span></label>
+            <input type="range" id="sliderT" min="0" max="100" value="20">
+        </div>
+        <div class="slider-group">
+            <label style="color: #10B981;"><span>P3 (Alpha 10Hz)</span> <span id="valA">60%</span></label>
+            <input type="range" id="sliderA" min="0" max="100" value="60">
+        </div>
+        <div class="slider-group">
+            <label style="color: #8B5CF6;"><span>P4 (Beta 20Hz)</span> <span id="valB">20%</span></label>
+            <input type="range" id="sliderB" min="0" max="100" value="20">
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
